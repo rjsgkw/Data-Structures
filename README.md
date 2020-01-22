@@ -1,2 +1,2 @@
 # Data-Structures
-java
+purely for learning purposes.
