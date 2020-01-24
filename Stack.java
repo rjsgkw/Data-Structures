@@ -30,6 +30,9 @@ public class Stack<T> {
     }
 
     public T peek() {
+        if(top != null) {
+            return top.t;
+        }
         return t;
     }
 
