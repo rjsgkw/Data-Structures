@@ -13,13 +13,19 @@ public class Stack<T> {
         }
 
         top.next = node;
+        node.previous = top;
         top = node;
 
-
-        return false;
+        return true;
     }
 
     public T pop() {
+        Node<T> node = top;
+        if(node != null) {
+            node.previous.next = null;
+            top = node.previous;
+            return node.t;
+        }
         return t;
     }
 
@@ -40,6 +46,7 @@ public class Stack<T> {
     private class Node<T> {
 
         private Node<T> next;
+        private Node<T> previous;
         private T t;
 
         private Node(T t) {
