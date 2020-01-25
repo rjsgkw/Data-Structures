@@ -1,29 +1,36 @@
+import java.util.Optional;
+
 public class Stack<T> {
 
     private T t;
     private Node<T> bottom;
     private Node<T> top;
+    private int size;
 
     public boolean push(T t) {
         Node<T> node = new Node<>(t);
         if(bottom == null) {
             bottom = node;
             top = node;
+            size++;
             return true;
         }
 
         top.next = node;
         node.previous = top;
         top = node;
-
+        size++;
         return true;
     }
 
     public T pop() {
         Node<T> node = top;
         if(node != null) {
-            node.previous.next = null;
+            if(node != bottom) {
+                node.previous.next = null;
+            }
             top = node.previous;
+            size--;
             return node.t;
         }
         return t;
@@ -36,6 +43,10 @@ public class Stack<T> {
         return t;
     }
 
+    public int size() {
+        return size;
+    }
+
     public String toString() {
         Node<T> current = bottom;
         StringBuilder sb = new StringBuilder();
@@ -43,7 +54,10 @@ public class Stack<T> {
             sb.append(current.t + " ");
             current = current.next;
         }
-        return sb.toString();
+        if(current == null)
+            return "Stack is empty";
+        else
+            return sb.toString();
     }
 
     private class Node<T> {
