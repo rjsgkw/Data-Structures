@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 public class Stack<T> {
 
     private T t;
