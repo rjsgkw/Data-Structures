@@ -13,7 +13,6 @@ public class Queue<T> {
             size++;
             return true;
         }
-
         last.behind = node;
         node.inFront = last;
         last = node;
@@ -35,8 +34,6 @@ public class Queue<T> {
             }
         }
         return null;
-
-
     }
 
     public T peek() {
@@ -56,8 +53,7 @@ public class Queue<T> {
         }
         return sb.toString();
     }
-
-
+    
     private class Node<T> {
 
         private T t;
