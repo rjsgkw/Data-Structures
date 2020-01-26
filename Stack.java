@@ -47,15 +47,14 @@ public class Stack<T> {
 
     public String toString() {
         Node<T> current = bottom;
+        if (current == null)
+            return "stack is empty";
         StringBuilder sb = new StringBuilder();
         while (current != null) {
             sb.append(current.t + " ");
             current = current.next;
         }
-        if(current == null)
-            return "Stack is empty";
-        else
-            return sb.toString();
+        return sb.toString();
     }
 
     private class Node<T> {
