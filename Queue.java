@@ -25,12 +25,12 @@ public class Queue<T> {
             if(first == last) {
                 first = null;
                 last = null;
-                return node.t;
             } else {
                 first = node.behind;
                 first.inFront = null;
-                return node.t;
             }
+            size--;
+            return node.t;
         }
         return null;
     }
@@ -39,6 +39,10 @@ public class Queue<T> {
         if(first != null)
             return first.t;
         return null;
+    }
+
+    public int size() {
+        return size;
     }
 
     public String toString() {
