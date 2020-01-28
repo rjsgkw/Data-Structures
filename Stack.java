@@ -10,13 +10,11 @@ public class Stack<T> {
         if(bottom == null) {
             bottom = node;
             top = node;
-            size++;
-            return true;
+        } else {
+            top.next = node;
+            node.previous = top;
+            top = node;
         }
-
-        top.next = node;
-        node.previous = top;
-        top = node;
         size++;
         return true;
     }
