@@ -1,5 +1,5 @@
 /*
-Does not allow duplicates. will return false for duplicate item added.
+Does not allow duplicates. Will return false for duplicate item added.
 However, a Map is created to keep track of duplicates.
  */
 
