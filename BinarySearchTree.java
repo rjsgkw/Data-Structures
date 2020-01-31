@@ -1,21 +1,21 @@
-public class BinarySearchTree {
+public class BinarySearchTree<T extends Comparable<T>> {
 
-    private Node root;
+    private Node<T> root;
 
-    public boolean insert(Integer value) {
-        Node node = new Node(value);
-        Node current = root;
-        Node parent = root;
+    public boolean insert(T value) {
+        Node<T> node = new Node<>(value);
+        Node<T> current = root;
+        Node<T> parent = root;
         boolean left = false;
         if(current == null) {
             root = node;
             return true;
         }
         while (current != null) {
-            if (node.value == current.value) {
+            if (value == current.value) {
                 return false;
             } else {
-                if (node.value > current.value) {
+                if (value.compareTo(current.value) > 0) {
                     parent = current;
                     current = current.right;
                     left = false;
@@ -33,14 +33,14 @@ public class BinarySearchTree {
         return true;
     }
 
-    public boolean lookUp(Integer value) {
-        Node current = root;
+    public boolean lookUp(T value) {
+        Node<T> current = root;
         if(current == null)
             return false;
         while (current != null) {
             if(value == current.value)
                 return true;
-            if(value > current.value)
+            if(value.compareTo(current.value) > 0)
                 current = current.right;
             else
                 current = current.left;
@@ -48,13 +48,13 @@ public class BinarySearchTree {
         return false;
     }
 
-    private static class Node {
+    private static class Node<T> {
 
-        private int value;
-        private Node left;
-        private Node right;
+        private T value;
+        private Node<T> left;
+        private Node<T> right;
 
-        private Node(int value) {
+        private Node(T value) {
             this.value = value;
         }
     }
