@@ -1,6 +1,15 @@
+/*
+Does not allow duplicates. will return false for duplicate item added.
+However, a Map is created to keep track of duplicates.
+ */
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
     private Node<T> root;
+    private Map<T, Integer> duplicates = new HashMap<>();
 
     public boolean insert(T value) {
         Node<T> node = new Node<>(value);
@@ -13,6 +22,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         while (current != null) {
             if (value.equals(current.value)) {
+                duplicates.put(value, duplicates.get(value) != null ? duplicates.get(value) + 1 : 1);
                 return false;
             } else {
                 if (value.compareTo(current.value) > 0) {
@@ -46,6 +56,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 current = current.left;
         }
         return false;
+    }
+
+    public void printDuplicates() {
+        System.out.println(duplicates);
     }
 
     private static class Node<T> {
