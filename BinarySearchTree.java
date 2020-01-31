@@ -12,7 +12,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return true;
         }
         while (current != null) {
-            if (value == current.value) {
+            if (value.equals(current.value)) {
                 return false;
             } else {
                 if (value.compareTo(current.value) > 0) {
@@ -38,7 +38,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if(current == null)
             return false;
         while (current != null) {
-            if(value == current.value)
+            if(value.equals(current.value))
                 return true;
             if(value.compareTo(current.value) > 0)
                 current = current.right;
