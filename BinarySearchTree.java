@@ -58,6 +58,40 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return false;
     }
 
+    /*
+    currently only removes leaf node.
+     */
+    public boolean remove(T value) {
+        Node<T> current = root;
+        Node<T> parent = root;
+        boolean left = false;
+        if(current == null)
+            return false;
+        while(current != null && !value.equals(current.value)) {
+            if(value.compareTo(current.value) > 0) {
+                parent = current;
+                current = current.right;
+                left = false;
+            } else {
+                parent = current;
+                current = current.left;
+                left = true;
+            }
+        }
+        if(current != null) {
+            if(current.left == null && current.right == null) {
+                if(left) {
+                    parent.left = null;
+                    return true;
+                } else {
+                    parent.right = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void printDuplicates() {
         System.out.println(duplicates);
     }
