@@ -3,12 +3,15 @@ Does not allow duplicates. Will return false for duplicate item added.
 However, a Map is created to keep track of duplicates.
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class BinarySearchTree<T extends Comparable<T>> {
 
-    private Node<T> root;
+    public Node<T> root;
     private Map<T, Integer> duplicates = new HashMap<>();
 
     public boolean insert(T value) {
@@ -114,4 +117,45 @@ public class BinarySearchTree<T extends Comparable<T>> {
             this.value = value;
         }
     }
+
+    public List<T> print() {
+        return breadthFirstSearchLoop();
+    }
+
+    public List<T> print(Queue<Node<T>> queue, List<T> list) {
+        return breadthFirstSearchRecursive(queue, list);
+    }
+
+    private List<T> breadthFirstSearchLoop() {
+        List<T> list = new ArrayList<>();
+        Node<T> currentNode = root;
+        Queue<Node<T>> queue = new Queue<>();
+        queue.offer(currentNode);
+
+        while(queue.size() > 0) {
+            currentNode = queue.poll();
+            list.add(currentNode.value);
+            if(currentNode.left != null)
+                queue.offer(currentNode.left);
+            if(currentNode.right != null)
+                queue.offer(currentNode.right);
+        }
+
+        return list;
+    }
+
+    private List<T> breadthFirstSearchRecursive(Queue<Node<T>> queue, List<T> list) {
+        if(queue.size() == 0)
+            return list;
+        Node<T> node = queue.poll();
+        list.add(node.value);
+        if(node.left != null)
+            queue.offer(node.left);
+        if (node.right != null)
+            queue.offer(node.right);
+
+        return breadthFirstSearchRecursive(queue, list);
+    }
+
+
 }
