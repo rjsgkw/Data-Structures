@@ -156,5 +156,47 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return breadthFirstSearchRecursive(queue, list);
     }
 
+    public List<T> DFSInOrder() {
+        return traverseInOrder(root, new ArrayList<>());
+    }
+
+    public List<T> DFSPostOrder() {
+        return traversePostOrder(root, new ArrayList<>());
+    }
+
+    public List<T> DFSPreOrder() {
+        return traversePreOrder(root, new ArrayList<>());
+    }
+
+    private List<T> traverseInOrder(Node<T> node, List<T> list) {
+        if(node.left != null)
+            traverseInOrder(node.left, list);
+        list.add(node.value);
+        if(node.right != null)
+            traverseInOrder(node.right, list);
+
+        return list;
+    }
+
+    private List<T> traversePostOrder(Node<T> node, List<T> list) {
+        if(node.left != null)
+            traversePostOrder(node.left, list);
+        if(node.right != null)
+            traversePostOrder(node.right, list);
+        list.add(node.value);
+
+        return list;
+    }
+
+    private List<T> traversePreOrder(Node<T> node, List<T> list) {
+        list.add(node.value);
+        if(node.left != null)
+            traversePreOrder(node.left, list);
+        if(node.right != null)
+            traversePreOrder(node.right, list);
+
+        return list;
+    }
+
 
 }
